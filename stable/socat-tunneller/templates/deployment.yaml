@@ -23,8 +23,12 @@ spec:
 {{ toYaml . | indent 8 }}
 {{- end }}
     spec:
+      securityContext:
+        runAsUser: 10000
       containers:
         - name: {{ .Chart.Name }}
+          securityContext:
+            runAsUser: 10000
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command:
